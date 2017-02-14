@@ -48,4 +48,19 @@ final class CreateMatchHandlerTest extends CommandHandlerScenarioTestCase
             ])
         ;
     }
+
+    /**
+     * @test
+     *
+     * @expectedException \Pamil\Chess\Match\Domain\Exception\CannotCreateMatch
+     */
+    public function it_can_not_create_a_match_with_single_player(): void
+    {
+        $matchId = MatchId::generate();
+        $playerId = PlayerId::fromString('Cheater');
+
+        $this->scenario
+            ->when(Match::create($matchId, $playerId, $playerId))
+        ;
+    }
 }

@@ -33,4 +33,21 @@ final class MatchTest extends AggregateRootScenarioTestCase
             ])
         ;
     }
+
+    /**
+     * @test
+     *
+     * @expectedException \Pamil\Chess\Match\Domain\Exception\CannotCreateMatch
+     */
+    public function it_can_not_be_created_with_single_player(): void
+    {
+        $matchId = MatchId::generate();
+        $playerId = PlayerId::fromString('Cheater');
+
+        $this->scenario
+            ->when(function () use ($matchId, $playerId) {
+                return Match::create($matchId, $playerId, $playerId);
+            })
+        ;
+    }
 }
