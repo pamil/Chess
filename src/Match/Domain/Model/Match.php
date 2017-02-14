@@ -32,6 +32,11 @@ final class Match extends EventSourcedAggregateRoot
         return $match;
     }
 
+    public function id(): MatchId
+    {
+        return $this->id;
+    }
+
     public function applyMatchCreated(MatchCreated $event): void
     {
         $this->id = $event->matchId();
@@ -39,6 +44,6 @@ final class Match extends EventSourcedAggregateRoot
 
     public function getAggregateRootId(): string
     {
-        return $this->id->toString();
+        return $this->id()->toString();
     }
 }
