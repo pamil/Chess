@@ -1,0 +1,26 @@
+language: php
+
+php:
+    - 7.1
+
+matrix:
+    include:
+        - php: nightly
+    allow_failures:
+        - php: nightly
+    fast_finish: true
+
+cache:
+    directories:
+        - vendor
+
+before_install:
+    - phpenv config-rm xdebug.ini || true
+
+install:
+    - composer update --prefer-dist
+
+script:
+    - composer validate --strict
+
+    - composer test
