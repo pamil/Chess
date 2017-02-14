@@ -12,7 +12,7 @@ use Ramsey\Uuid\Uuid;
 final class MatchIdTest extends TestCase
 {
     /** @test */
-    public function it_can_be_created_from_uuid_string()
+    public function it_can_be_created_from_uuid_string(): void
     {
         $matchId = MatchId::fromString('67c99578-798c-428a-a3fa-08ac9e20f8dd');
 
@@ -21,7 +21,7 @@ final class MatchIdTest extends TestCase
     }
 
     /** @test */
-    public function it_can_be_generated()
+    public function it_can_be_generated(): void
     {
         $matchId = MatchId::generate();
 
@@ -34,7 +34,7 @@ final class MatchIdTest extends TestCase
      *
      * @expectedException \InvalidArgumentException
      */
-    public function it_cannot_be_created_from_string_not_being_uuid()
+    public function it_cannot_be_created_from_string_not_being_uuid(): void
     {
         MatchId::fromString('Elon Musk');
     }
