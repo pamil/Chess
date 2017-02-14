@@ -37,13 +37,14 @@ final class Match extends EventSourcedAggregateRoot
         return $this->id;
     }
 
-    public function applyMatchCreated(MatchCreated $event): void
-    {
-        $this->id = $event->matchId();
-    }
-
     public function getAggregateRootId(): string
     {
         return $this->id()->toString();
+    }
+
+    /** @noinspection PhpUnusedPrivateMethodInspection */
+    private function applyMatchCreated(MatchCreated $event): void
+    {
+        $this->id = $event->matchId();
     }
 }
