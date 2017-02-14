@@ -8,8 +8,8 @@ use Pamil\Chess\Match\Domain\Model\MatchId;
 
 final class MatchNotFound extends \DomainException
 {
-    public static function withId(MatchId $id): self
+    public static function withId(MatchId $id, \Exception $previous = null): self
     {
-        return new self(sprintf('Match with id "%s" not found!', $id->toString()));
+        return new self(sprintf('Match with id "%s" not found!', $id->toString()), 0, $previous);
     }
 }
