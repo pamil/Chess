@@ -6,6 +6,7 @@ namespace Pamil\Chess\Match\Domain\Model;
 
 use Broadway\EventSourcing\EventSourcedAggregateRoot;
 use Pamil\Chess\Match\Domain\Event\MatchCreated;
+use Pamil\Chess\Match\Domain\Event\MatchFinished;
 use Pamil\Chess\Match\Domain\Exception\CannotCreateMatch;
 
 final class Match extends EventSourcedAggregateRoot
@@ -30,6 +31,11 @@ final class Match extends EventSourcedAggregateRoot
         $match->apply(MatchCreated::betweenPlayers($matchId, $whitePlayerId, $blackPlayerId));
 
         return $match;
+    }
+
+    public function finish(MatchResult $result): void
+    {
+        $this->apply(MatchFinished::withResult($this->id(), $result));
     }
 
     public function id(): MatchId

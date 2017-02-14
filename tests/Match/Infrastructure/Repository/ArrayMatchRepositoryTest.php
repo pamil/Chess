@@ -21,7 +21,7 @@ final class ArrayMatchRepositoryTest extends TestCase
         $matchId = MatchId::generate();
         $match = Match::create($matchId, PlayerId::fromString('White'), PlayerId::fromString('Black'));
 
-        $repository->add($match);
+        $repository->save($match);
 
         Assert::assertSame($match, $repository->get($matchId));
     }

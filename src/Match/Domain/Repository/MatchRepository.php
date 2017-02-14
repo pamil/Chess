@@ -15,5 +15,5 @@ interface MatchRepository
      */
     public function get(MatchId $id): Match;
 
-    public function add(Match $match): void;
+    public function save(Match $match): void;
 }

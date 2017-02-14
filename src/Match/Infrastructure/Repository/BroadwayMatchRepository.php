@@ -31,7 +31,7 @@ final class BroadwayMatchRepository implements MatchRepository
         }
     }
 
-    public function add(Match $match): void
+    public function save(Match $match): void
     {
         $this->eventSourcingRepository->save($match);
     }

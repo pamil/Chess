@@ -23,7 +23,7 @@ final class ArrayMatchRepository implements MatchRepository
         return $this->matches[$id->toString()];
     }
 
-    public function add(Match $match): void
+    public function save(Match $match): void
     {
         $this->matches[$match->id()->toString()] = $match;
     }
