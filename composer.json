@@ -29,5 +29,8 @@
         "psr-4": {
             "Tests\\Pamil\\Chess\\": "tests/"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --colors=always"
     }
 }
