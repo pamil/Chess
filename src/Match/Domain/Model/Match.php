@@ -20,14 +20,14 @@ final class Match extends EventSourcedAggregateRoot
 
     }
 
-    public static function create(PlayerId $whitePlayerId, PlayerId $blackPlayerId): self
+    public static function create(MatchId $matchId, PlayerId $whitePlayerId, PlayerId $blackPlayerId): self
     {
         if ($whitePlayerId->toString() === $blackPlayerId->toString()) {
             throw CannotCreateMatch::withSinglePlayer($whitePlayerId);
         }
 
         $match = new self();
-        $match->apply(MatchCreated::betweenPlayers(MatchId::generate(), $whitePlayerId, $blackPlayerId));
+        $match->apply(MatchCreated::betweenPlayers($matchId, $whitePlayerId, $blackPlayerId));
 
         return $match;
     }
@@ -42,8 +42,7 @@ final class Match extends EventSourcedAggregateRoot
         return $this->id()->toString();
     }
 
-    /** @noinspection PhpUnusedPrivateMethodInspection */
-    private function applyMatchCreated(MatchCreated $event): void
+    protected function applyMatchCreated(MatchCreated $event): void
     {
         $this->id = $event->matchId();
     }
