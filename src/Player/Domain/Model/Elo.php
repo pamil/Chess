@@ -13,14 +13,10 @@ final class Elo
 
     public function __construct(int $score)
     {
-        if ($score < 0) {
-            throw new \InvalidArgumentException('Elo score cannot be less than 0.');
-        }
-
         $this->score = $score;
     }
 
-    public static function getProbabilityOfWinning(self $subject, self $opponent): float
+    public static function getWinProbability(self $subject, self $opponent): float
     {
         $transformedOfScore = 10 ** ($subject->score / 400);
         $transformedVersusScore = 10 ** ($opponent->score / 400);
@@ -30,17 +26,17 @@ final class Elo
 
     public function afterWinningAgainst(self $opponent): self
     {
-        return new self($this->score + $this->getDelta(1, self::getProbabilityOfWinning($this, $opponent)));
+        return new self($this->score + $this->getDelta(1, self::getWinProbability($this, $opponent)));
     }
 
     public function afterDrawingAgainst(self $opponent): self
     {
-        return new self($this->score + $this->getDelta(0.5, self::getProbabilityOfWinning($this, $opponent)));
+        return new self($this->score + $this->getDelta(0.5, self::getWinProbability($this, $opponent)));
     }
 
     public function afterLosingAgainst(self $opponent): self
     {
-        return new self($this->score + $this->getDelta(0, self::getProbabilityOfWinning($this, $opponent)));
+        return new self($this->score + $this->getDelta(0, self::getWinProbability($this, $opponent)));
     }
 
     public function toInt(): int

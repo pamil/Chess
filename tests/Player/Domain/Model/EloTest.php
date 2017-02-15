@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Pamil\Chess\Player\Domain\Model;
 
+use Eris\Generator;
+use Eris\TestTrait;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
 final class EloTest extends TestCase
 {
+    use TestTrait;
+
     /** @test */
     public function it_represents_elo_score()
     {
@@ -20,44 +24,63 @@ final class EloTest extends TestCase
     /** @test */
     public function it_computes_score_after_winning()
     {
-        Assert::assertSame(1520, (new Elo(1500))->afterWinningAgainst(new Elo(1600))->toInt());
-        Assert::assertSame(1516, (new Elo(1500))->afterWinningAgainst(new Elo(1500))->toInt());
-        Assert::assertSame(1511, (new Elo(1500))->afterWinningAgainst(new Elo(1400))->toInt());
+        Assert::assertSame(20, (new Elo(0))->afterWinningAgainst(new Elo(100))->toInt());
+        Assert::assertSame(16, (new Elo(0))->afterWinningAgainst(new Elo(0))->toInt());
+        Assert::assertSame(11, (new Elo(0))->afterWinningAgainst(new Elo(-100))->toInt());
     }
 
     /** @test */
     public function it_computes_score_after_drawing()
     {
-        Assert::assertSame(1504, (new Elo(1500))->afterDrawingAgainst(new Elo(1600))->toInt());
-        Assert::assertSame(1500, (new Elo(1500))->afterDrawingAgainst(new Elo(1500))->toInt());
-        Assert::assertSame(1495, (new Elo(1500))->afterDrawingAgainst(new Elo(1400))->toInt());
+        Assert::assertSame(4, (new Elo(0))->afterDrawingAgainst(new Elo(100))->toInt());
+        Assert::assertSame(0, (new Elo(0))->afterDrawingAgainst(new Elo(0))->toInt());
+        Assert::assertSame(-5, (new Elo(0))->afterDrawingAgainst(new Elo(-100))->toInt());
     }
 
     /** @test */
     public function it_computes_score_after_losing()
     {
-        Assert::assertSame(1488, (new Elo(1500))->afterLosingAgainst(new Elo(1600))->toInt());
-        Assert::assertSame(1484, (new Elo(1500))->afterLosingAgainst(new Elo(1500))->toInt());
-        Assert::assertSame(1479, (new Elo(1500))->afterLosingAgainst(new Elo(1400))->toInt());
+        Assert::assertSame(-12, (new Elo(0))->afterLosingAgainst(new Elo(100))->toInt());
+        Assert::assertSame(-16, (new Elo(0))->afterLosingAgainst(new Elo(0))->toInt());
+        Assert::assertSame(-21, (new Elo(0))->afterLosingAgainst(new Elo(-100))->toInt());
     }
 
     /** @test */
     public function it_is_immutable()
     {
-        $elo = new Elo(1000);
+        $elo = new Elo(0);
 
-        Assert::assertNotSame($elo, $elo->afterWinningAgainst(new Elo(1000)));
-        Assert::assertNotSame($elo, $elo->afterDrawingAgainst(new Elo(1000)));
-        Assert::assertNotSame($elo, $elo->afterLosingAgainst(new Elo(1000)));
+        Assert::assertNotSame($elo, $elo->afterWinningAgainst(new Elo(0)));
+        Assert::assertNotSame($elo, $elo->afterDrawingAgainst(new Elo(0)));
+        Assert::assertNotSame($elo, $elo->afterLosingAgainst(new Elo(0)));
     }
 
-    /**
-     * @test
-     *
-     * @expectedException \InvalidArgumentException
-     */
-    public function it_cannot_be_created_with_score_less_than_zero()
+    /** @test */
+    public function sum_of_win_probabilities_is_always_one()
     {
-        new Elo(-1);
+        $this
+            ->forAll(Generator\choose(-5000, 5000), Generator\choose(-5000, 5000))
+            ->then(function ($firstScore, $secondScore) {
+                $firstElo = new Elo($firstScore);
+                $secondElo = new Elo($secondScore);
+
+                Assert::assertSame(1.0, Elo::getWinProbability($firstElo, $secondElo) + Elo::getWinProbability($secondElo, $firstElo));
+            })
+        ;
+    }
+
+    /** @test */
+    public function win_probability_is_relative()
+    {
+        $this
+            ->limitTo(20)
+            ->forAll(Generator\choose(-5000, 5000))
+            ->then(function ($score) {
+                $elo = new Elo($score);
+
+                Assert::assertSame(0.64, round(Elo::getWinProbability($elo, new Elo($score - 100)), 2));
+                Assert::assertSame(0.36, round(Elo::getWinProbability($elo, new Elo($score + 100)), 2));
+            })
+        ;
     }
 }
