@@ -5,4 +5,9 @@
     <testsuite name="Player">
         <directory suffix="Test.php">tests/Player</directory>
     </testsuite>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src/</directory>
+        </whitelist>
+    </filter>
 </phpunit>
