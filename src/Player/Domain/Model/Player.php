@@ -22,7 +22,7 @@ final class Player extends EventSourcedAggregateRoot
     {
         $player = new self();
         $player->apply(new PlayerRegistered($playerId));
-        $player->apply(new PlayerRated($playerId, 1200));
+        $player->apply(new PlayerRated($playerId, new Elo(1200)));
 
         return $player;
     }

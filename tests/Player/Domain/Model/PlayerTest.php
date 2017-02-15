@@ -9,6 +9,7 @@ use Broadway\EventSourcing\AggregateFactory\ReflectionAggregateFactory;
 use Broadway\EventSourcing\Testing\AggregateRootScenarioTestCase;
 use Pamil\Chess\Player\Domain\Event\PlayerRated;
 use Pamil\Chess\Player\Domain\Event\PlayerRegistered;
+use Pamil\Chess\Player\Domain\Model\Elo;
 use Pamil\Chess\Player\Domain\Model\Player;
 use Pamil\Chess\Player\Domain\Model\PlayerId;
 
@@ -35,7 +36,7 @@ final class PlayerTest extends AggregateRootScenarioTestCase
             })
             ->then([
                 new PlayerRegistered($playerId),
-                new PlayerRated($playerId, 1200),
+                new PlayerRated($playerId, new Elo(1200)),
             ])
         ;
     }

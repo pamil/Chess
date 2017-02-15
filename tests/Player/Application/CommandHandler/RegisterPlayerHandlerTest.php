@@ -14,6 +14,7 @@ use Pamil\Chess\Player\Application\Command\RegisterPlayer;
 use Pamil\Chess\Player\Application\CommandHandler\RegisterPlayerHandler;
 use Pamil\Chess\Player\Domain\Event\PlayerRated;
 use Pamil\Chess\Player\Domain\Event\PlayerRegistered;
+use Pamil\Chess\Player\Domain\Model\Elo;
 use Pamil\Chess\Player\Domain\Model\Player;
 use Pamil\Chess\Player\Domain\Model\PlayerId;
 use Pamil\Chess\Player\Infrastructure\Repository\BroadwayPlayerRepository;
@@ -43,7 +44,7 @@ final class RegisterPlayerHandlerTest extends CommandHandlerScenarioTestCase
             ->when(new RegisterPlayer($playerId))
             ->then([
                 new PlayerRegistered($playerId),
-                new PlayerRated($playerId, 1200),
+                new PlayerRated($playerId, new Elo(1200)),
             ])
         ;
     }

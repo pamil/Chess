@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Pamil\Chess\Player\Domain\Event;
 
+use Pamil\Chess\Player\Domain\Model\Elo;
 use Pamil\Chess\Player\Domain\Model\PlayerId;
 
 final class PlayerRated
@@ -11,10 +12,10 @@ final class PlayerRated
     /** @var PlayerId */
     private $id;
 
-    /** @var int */
+    /** @var Elo */
     private $elo;
 
-    public function __construct(PlayerId $id, int $elo)
+    public function __construct(PlayerId $id, Elo $elo)
     {
         $this->id = $id;
         $this->elo = $elo;
@@ -25,7 +26,7 @@ final class PlayerRated
         return $this->id;
     }
 
-    public function elo(): int
+    public function elo(): Elo
     {
         return $this->elo;
     }
