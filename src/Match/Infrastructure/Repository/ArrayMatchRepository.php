@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Pamil\Chess\Match\Infrastructure\Repository;
 
-use Pamil\Chess\Match\Domain\Exception\MatchNotFound;
+use Pamil\Chess\Match\Application\Exception\MatchNotFound;
 use Pamil\Chess\Match\Domain\Model\Match;
 use Pamil\Chess\Match\Domain\Model\MatchId;
 use Pamil\Chess\Match\Application\Repository\MatchRepository;

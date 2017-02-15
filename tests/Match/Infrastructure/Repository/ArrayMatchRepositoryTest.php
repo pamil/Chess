@@ -29,7 +29,7 @@ final class ArrayMatchRepositoryTest extends TestCase
     /**
      * @test
      *
-     * @expectedException \Pamil\Chess\Match\Domain\Exception\MatchNotFound
+     * @expectedException \Pamil\Chess\Match\Application\Exception\MatchNotFound
      */
     public function it_throws_an_exception_if_match_cannot_be_found()
     {
