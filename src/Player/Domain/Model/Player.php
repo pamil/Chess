@@ -21,8 +21,8 @@ final class Player extends EventSourcedAggregateRoot
     public static function register(PlayerId $id): self
     {
         $player = new self();
-        $player->apply(PlayerRegistered::withId($id));
-        $player->apply(PlayerRated::withElo($id, 1200));
+        $player->apply(new PlayerRegistered($id));
+        $player->apply(new PlayerRated($id, 1200));
 
         return $player;
     }

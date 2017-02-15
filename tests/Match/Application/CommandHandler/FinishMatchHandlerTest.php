@@ -44,11 +44,11 @@ final class FinishMatchHandlerTest extends CommandHandlerScenarioTestCase
         $this->scenario
             ->withAggregateId($matchId->toString())
             ->given([
-                MatchCreated::betweenPlayers($matchId, $whitePlayerId, $blackPlayerId)
+                new MatchCreated($matchId, $whitePlayerId, $blackPlayerId)
             ])
-            ->when(FinishMatch::withResult($matchId, MatchResult::blackWon()))
+            ->when(new FinishMatch($matchId, MatchResult::blackWon()))
             ->then([
-                MatchFinished::withResult($matchId, MatchResult::blackWon()),
+                new MatchFinished($matchId, MatchResult::blackWon()),
             ])
         ;
     }
@@ -61,7 +61,7 @@ final class FinishMatchHandlerTest extends CommandHandlerScenarioTestCase
     public function it_cannot_finish_an_unexisting_match()
     {
         $this->scenario
-            ->when(FinishMatch::withResult(MatchId::generate(), MatchResult::draw()))
+            ->when(new FinishMatch(MatchId::generate(), MatchResult::draw()))
         ;
     }
 }

@@ -42,9 +42,9 @@ final class CreateMatchHandlerTest extends CommandHandlerScenarioTestCase
         $this->scenario
             ->withAggregateId($matchId->toString())
             ->given([])
-            ->when(CreateMatch::betweenPlayers($matchId, $whitePlayerId, $blackPlayerId))
+            ->when(new CreateMatch($matchId, $whitePlayerId, $blackPlayerId))
             ->then([
-                MatchCreated::betweenPlayers($matchId, $whitePlayerId, $blackPlayerId),
+                new MatchCreated($matchId, $whitePlayerId, $blackPlayerId),
             ])
         ;
     }
@@ -60,7 +60,7 @@ final class CreateMatchHandlerTest extends CommandHandlerScenarioTestCase
         $playerId = PlayerId::fromString('Cheater');
 
         $this->scenario
-            ->when(Match::create($matchId, $playerId, $playerId))
+            ->when(new CreateMatch($matchId, $playerId, $playerId))
         ;
     }
 }

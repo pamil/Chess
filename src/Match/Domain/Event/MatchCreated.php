@@ -18,16 +18,11 @@ final class MatchCreated
     /** @var PlayerId */
     private $blackPlayerId;
 
-    private function __construct(MatchId $matchId, PlayerId $whitePlayerId, PlayerId $blackPlayerId)
+    public function __construct(MatchId $matchId, PlayerId $whitePlayerId, PlayerId $blackPlayerId)
     {
         $this->matchId = $matchId;
         $this->whitePlayerId = $whitePlayerId;
         $this->blackPlayerId = $blackPlayerId;
-    }
-
-    public static function betweenPlayers(MatchId $matchId, PlayerId $whitePlayerId, PlayerId $blackPlayerId): self
-    {
-        return new self($matchId, $whitePlayerId, $blackPlayerId);
     }
 
     public function matchId(): MatchId

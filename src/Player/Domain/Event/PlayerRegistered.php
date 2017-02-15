@@ -11,14 +11,9 @@ final class PlayerRegistered
     /** @var PlayerId */
     private $id;
 
-    private function __construct(PlayerId $id)
+    public function __construct(PlayerId $id)
     {
         $this->id = $id;
-    }
-
-    public static function withId(PlayerId $id): self
-    {
-        return new self($id);
     }
 
     public function id(): PlayerId

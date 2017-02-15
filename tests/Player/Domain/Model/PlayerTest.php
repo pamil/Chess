@@ -34,8 +34,8 @@ final class PlayerTest extends AggregateRootScenarioTestCase
                 return Player::register($playerId);
             })
             ->then([
-                PlayerRegistered::withId($playerId),
-                PlayerRated::withElo($playerId, 1200),
+                new PlayerRegistered($playerId),
+                new PlayerRated($playerId, 1200),
             ])
         ;
     }

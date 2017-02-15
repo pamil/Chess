@@ -15,15 +15,10 @@ final class MatchFinished
     /** @var MatchResult */
     private $result;
 
-    private function __construct(MatchId $matchId, MatchResult $result)
+    public function __construct(MatchId $matchId, MatchResult $result)
     {
         $this->matchId = $matchId;
         $this->result = $result;
-    }
-
-    public static function withResult(MatchId $matchId, MatchResult $result): self
-    {
-        return new self($matchId, $result);
     }
 
     public function matchId(): MatchId

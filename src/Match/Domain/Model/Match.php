@@ -26,14 +26,14 @@ final class Match extends EventSourcedAggregateRoot
         }
 
         $match = new self();
-        $match->apply(MatchCreated::betweenPlayers($matchId, $whitePlayerId, $blackPlayerId));
+        $match->apply(new MatchCreated($matchId, $whitePlayerId, $blackPlayerId));
 
         return $match;
     }
 
     public function finish(MatchResult $result): void
     {
-        $this->apply(MatchFinished::withResult($this->id(), $result));
+        $this->apply(new MatchFinished($this->id(), $result));
     }
 
     public function id(): MatchId

@@ -38,7 +38,7 @@ final class MatchTest extends AggregateRootScenarioTestCase
                 return Match::create($matchId, $whitePlayerId, $blackPlayerId);
             })
             ->then([
-                MatchCreated::betweenPlayers($matchId, $whitePlayerId, $blackPlayerId),
+                new MatchCreated($matchId, $whitePlayerId, $blackPlayerId),
             ])
         ;
     }
@@ -70,13 +70,13 @@ final class MatchTest extends AggregateRootScenarioTestCase
         $this->scenario
             ->withAggregateId($matchId->toString())
             ->given([
-                MatchCreated::betweenPlayers($matchId, $whitePlayerId, $blackPlayerId   )
+                new MatchCreated($matchId, $whitePlayerId, $blackPlayerId   )
             ])
             ->when(function (Match $match) {
                 $match->finish(MatchResult::whiteWon());
             })
             ->then([
-                MatchFinished::withResult($matchId, MatchResult::whiteWon())
+                new MatchFinished($matchId, MatchResult::whiteWon())
             ])
         ;
     }

@@ -40,10 +40,10 @@ final class RegisterPlayerHandlerTest extends CommandHandlerScenarioTestCase
         $this->scenario
             ->withAggregateId($playerId->toString())
             ->given([])
-            ->when(RegisterPlayer::withId($playerId))
+            ->when(new RegisterPlayer($playerId))
             ->then([
-                PlayerRegistered::withId($playerId),
-                PlayerRated::withElo($playerId, 1200),
+                new PlayerRegistered($playerId),
+                new PlayerRated($playerId, 1200),
             ])
         ;
     }
