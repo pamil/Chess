@@ -9,7 +9,7 @@ use Broadway\Repository\AggregateNotFoundException;
 use Pamil\Chess\Match\Domain\Exception\MatchNotFound;
 use Pamil\Chess\Match\Domain\Model\Match;
 use Pamil\Chess\Match\Domain\Model\MatchId;
-use Pamil\Chess\Match\Domain\Repository\MatchRepository;
+use Pamil\Chess\Match\Application\Repository\MatchRepository;
 
 final class BroadwayMatchRepository implements MatchRepository
 {

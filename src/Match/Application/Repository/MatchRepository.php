@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Pamil\Chess\Match\Domain\Repository;
+namespace Pamil\Chess\Match\Application\Repository;
 
 use Pamil\Chess\Match\Domain\Exception\MatchNotFound;
 use Pamil\Chess\Match\Domain\Model\Match;

@@ -6,7 +6,7 @@ namespace Pamil\Chess\Match\Application\CommandHandler;
 
 use Broadway\CommandHandling\CommandHandlerInterface;
 use Pamil\Chess\Match\Application\Command\FinishMatch;
-use Pamil\Chess\Match\Domain\Repository\MatchRepository;
+use Pamil\Chess\Match\Application\Repository\MatchRepository;
 
 final class FinishMatchHandler implements CommandHandlerInterface
 {

@@ -7,7 +7,7 @@ namespace Pamil\Chess\Match\Application\CommandHandler;
 use Broadway\CommandHandling\CommandHandlerInterface;
 use Pamil\Chess\Match\Application\Command\CreateMatch;
 use Pamil\Chess\Match\Domain\Model\Match;
-use Pamil\Chess\Match\Domain\Repository\MatchRepository;
+use Pamil\Chess\Match\Application\Repository\MatchRepository;
 
 final class CreateMatchHandler implements CommandHandlerInterface
 {
