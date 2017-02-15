@@ -46,6 +46,6 @@ final class Elo
 
     private function getDelta(float $result, float $probability): int
     {
-        return (int) floor(self::K * ($result - $probability));
+        return (int) round(self::K * ($result - $probability));
     }
 }
