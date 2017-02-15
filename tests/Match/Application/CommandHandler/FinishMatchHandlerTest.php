@@ -52,4 +52,16 @@ final class FinishMatchHandlerTest extends CommandHandlerScenarioTestCase
             ])
         ;
     }
+
+    /**
+     * @test
+     *
+     * @expectedException \Pamil\Chess\Match\Application\Exception\MatchNotFound
+     */
+    public function match_must_exist_in_order_to_be_finished()
+    {
+        $this->scenario
+            ->when(FinishMatch::withResult(MatchId::generate(), MatchResult::draw()))
+        ;
+    }
 }
