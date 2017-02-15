@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Pamil\Chess\Player\Domain\Model;
 
 use Broadway\EventSourcing\EventSourcedAggregateRoot;
+use Pamil\Chess\Player\Domain\Event\PlayerRated;
 use Pamil\Chess\Player\Domain\Event\PlayerRegistered;
 
 final class Player extends EventSourcedAggregateRoot
@@ -21,6 +22,7 @@ final class Player extends EventSourcedAggregateRoot
     {
         $player = new self();
         $player->apply(PlayerRegistered::withId($id));
+        $player->apply(PlayerRated::withElo($id, 1200));
 
         return $player;
     }

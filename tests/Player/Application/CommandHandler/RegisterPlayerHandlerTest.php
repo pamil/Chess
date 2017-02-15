@@ -12,6 +12,7 @@ use Broadway\EventSourcing\EventSourcingRepository;
 use Broadway\EventStore\EventStoreInterface;
 use Pamil\Chess\Player\Application\Command\RegisterPlayer;
 use Pamil\Chess\Player\Application\CommandHandler\RegisterPlayerHandler;
+use Pamil\Chess\Player\Domain\Event\PlayerRated;
 use Pamil\Chess\Player\Domain\Event\PlayerRegistered;
 use Pamil\Chess\Player\Domain\Model\Player;
 use Pamil\Chess\Player\Domain\Model\PlayerId;
@@ -42,6 +43,7 @@ final class RegisterPlayerHandlerTest extends CommandHandlerScenarioTestCase
             ->when(RegisterPlayer::withId($playerId))
             ->then([
                 PlayerRegistered::withId($playerId),
+                PlayerRated::withElo($playerId, 1200),
             ])
         ;
     }

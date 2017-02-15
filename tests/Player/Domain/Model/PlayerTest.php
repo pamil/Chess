@@ -7,6 +7,7 @@ namespace Tests\Pamil\Chess\Player\Domain\Model;
 use Broadway\EventSourcing\AggregateFactory\AggregateFactoryInterface;
 use Broadway\EventSourcing\AggregateFactory\ReflectionAggregateFactory;
 use Broadway\EventSourcing\Testing\AggregateRootScenarioTestCase;
+use Pamil\Chess\Player\Domain\Event\PlayerRated;
 use Pamil\Chess\Player\Domain\Event\PlayerRegistered;
 use Pamil\Chess\Player\Domain\Model\Player;
 use Pamil\Chess\Player\Domain\Model\PlayerId;
@@ -34,6 +35,7 @@ final class PlayerTest extends AggregateRootScenarioTestCase
             })
             ->then([
                 PlayerRegistered::withId($playerId),
+                PlayerRated::withElo($playerId, 1200),
             ])
         ;
     }
