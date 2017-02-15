@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 final class PlayerIdTest extends TestCase
 {
     /** @test */
-    public function it_can_be_created_from_string(): void
+    public function it_is_created_from_string(): void
     {
         $playerId = PlayerId::fromString('Nikola Tesla');
 

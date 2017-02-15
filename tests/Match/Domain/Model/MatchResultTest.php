@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 final class MatchResultTest extends TestCase
 {
     /** @test */
-    public function it_can_represent_a_win_of_white(): void
+    public function it_represents_a_win_of_white(): void
     {
         $matchResult = MatchResult::whiteWon();
 
@@ -20,7 +20,7 @@ final class MatchResultTest extends TestCase
     }
 
     /** @test */
-    public function it_can_represent_a_draw(): void
+    public function it_represents_a_draw(): void
     {
         $matchResult = MatchResult::draw();
 
@@ -29,7 +29,7 @@ final class MatchResultTest extends TestCase
     }
 
     /** @test */
-    public function it_can_represent_a_win_of_black(): void
+    public function it_represents_a_win_of_black(): void
     {
         $matchResult = MatchResult::blackWon();
 
@@ -38,7 +38,7 @@ final class MatchResultTest extends TestCase
     }
 
     /** @test */
-    public function it_can_be_created_from_string(): void
+    public function it_is_created_from_a_valid_string(): void
     {
         Assert::assertSame('W', MatchResult::fromString('W')->toString());
         Assert::assertSame('D', MatchResult::fromString('D')->toString());
@@ -51,7 +51,7 @@ final class MatchResultTest extends TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Match result must be one of "W", "D", "B"; got "X" instead.
      */
-    public function it_throws_an_exception_if_trying_to_create_one_from_invalid_string(): void
+    public function it_cannot_be_created_from_an_invalid_string(): void
     {
         MatchResult::fromString('X');
     }

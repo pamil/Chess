@@ -24,7 +24,7 @@ final class PlayerTest extends AggregateRootScenarioTestCase
     }
 
     /** @test */
-    public function player_can_be_registered(): void
+    public function it_is_registered_with_id(): void
     {
         $playerId = PlayerId::fromString('Elon Musk');
 

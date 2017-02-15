@@ -30,7 +30,7 @@ final class ArrayPlayerRepositoryTest extends TestCase
      *
      * @expectedException \Pamil\Chess\Player\Application\Exception\PlayerNotFound
      */
-    public function it_throws_an_exception_if_player_cannot_be_found()
+    public function it_cannot_return_an_unexisting_player()
     {
         $repository = new ArrayPlayerRepository();
 

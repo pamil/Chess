@@ -31,7 +31,7 @@ final class ArrayMatchRepositoryTest extends TestCase
      *
      * @expectedException \Pamil\Chess\Match\Application\Exception\MatchNotFound
      */
-    public function it_throws_an_exception_if_match_cannot_be_found()
+    public function it_cannot_return_an_unexisting_match()
     {
         $repository = new ArrayMatchRepository();
 

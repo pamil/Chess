@@ -33,7 +33,7 @@ final class CreateMatchHandlerTest extends CommandHandlerScenarioTestCase
     }
 
     /** @test */
-    public function it_can_create_a_match_between_players()
+    public function it_creates_a_match_between_players()
     {
         $matchId = MatchId::generate();
         $whitePlayerId = PlayerId::fromString('Krawczyk');
@@ -54,7 +54,7 @@ final class CreateMatchHandlerTest extends CommandHandlerScenarioTestCase
      *
      * @expectedException \Pamil\Chess\Match\Domain\Exception\CannotCreateMatch
      */
-    public function it_can_not_create_a_match_with_single_player(): void
+    public function it_cannot_create_a_match_with_single_player(): void
     {
         $matchId = MatchId::generate();
         $playerId = PlayerId::fromString('Cheater');

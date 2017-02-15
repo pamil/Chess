@@ -27,7 +27,7 @@ final class MatchTest extends AggregateRootScenarioTestCase
     }
 
     /** @test */
-    public function it_can_be_created_between_players(): void
+    public function it_is_created_between_players(): void
     {
         $matchId = MatchId::generate();
         $whitePlayerId = PlayerId::fromString('Krawczyk');
@@ -48,7 +48,7 @@ final class MatchTest extends AggregateRootScenarioTestCase
      *
      * @expectedException \Pamil\Chess\Match\Domain\Exception\CannotCreateMatch
      */
-    public function it_can_not_be_created_with_single_player(): void
+    public function it_cannot_be_created_with_a_single_player(): void
     {
         $matchId = MatchId::generate();
         $playerId = PlayerId::fromString('Cheater');
@@ -61,7 +61,7 @@ final class MatchTest extends AggregateRootScenarioTestCase
     }
 
     /** @test */
-    public function match_can_be_finished(): void
+    public function it_is_finished(): void
     {
         $matchId = MatchId::generate();
         $whitePlayerId = PlayerId::fromString('Krawczyk');
