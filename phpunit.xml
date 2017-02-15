@@ -1,5 +1,8 @@
 <phpunit >
-    <testsuite name="Pamil\Chess\Match">
+    <testsuite name="Match">
         <directory suffix="Test.php">tests/Match</directory>
+    </testsuite>
+    <testsuite name="Player">
+        <directory suffix="Test.php">tests/Player</directory>
     </testsuite>
 </phpunit>
