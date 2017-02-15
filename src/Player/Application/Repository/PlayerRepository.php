@@ -15,5 +15,5 @@ interface PlayerRepository
      */
     public function get(PlayerId $playerId): Player;
 
-    public function save(Player $match): void;
+    public function save(Player $player): void;
 }

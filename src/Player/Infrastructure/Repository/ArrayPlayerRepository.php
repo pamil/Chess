@@ -12,19 +12,19 @@ use Pamil\Chess\Player\Application\Repository\PlayerRepository;
 final class ArrayPlayerRepository implements PlayerRepository
 {
     /** @var Player[] Indexed by stringified PlayerId */
-    private $matches = [];
+    private $players = [];
 
     public function get(PlayerId $playerId): Player
     {
-        if (!array_key_exists($playerId->toString(), $this->matches)) {
+        if (!array_key_exists($playerId->toString(), $this->players)) {
             throw PlayerNotFound::withId($playerId);
         }
 
-        return $this->matches[$playerId->toString()];
+        return $this->players[$playerId->toString()];
     }
 
-    public function save(Player $match): void
+    public function save(Player $player): void
     {
-        $this->matches[$match->id()->toString()] = $match;
+        $this->players[$player->id()->toString()] = $player;
     }
 }

@@ -31,8 +31,8 @@ final class BroadwayPlayerRepository implements PlayerRepository
         }
     }
 
-    public function save(Player $match): void
+    public function save(Player $player): void
     {
-        $this->eventSourcingRepository->save($match);
+        $this->eventSourcingRepository->save($player);
     }
 }

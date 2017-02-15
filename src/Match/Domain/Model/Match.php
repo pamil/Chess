@@ -11,9 +11,7 @@ use Pamil\Chess\Match\Domain\Exception\CannotCreateMatch;
 
 final class Match extends EventSourcedAggregateRoot
 {
-    /**
-     * @var MatchId
-     */
+    /** @var MatchId */
     private $id;
 
     private function __construct()
