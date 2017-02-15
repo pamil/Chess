@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 final class ArrayPlayerRepositoryTest extends TestCase
 {
     /** @test */
-    public function it_stores_a_player()
+    public function it_stores_a_player(): void
     {
         $repository = new ArrayPlayerRepository();
 
@@ -30,7 +30,7 @@ final class ArrayPlayerRepositoryTest extends TestCase
      *
      * @expectedException \Pamil\Chess\Player\Application\Exception\PlayerNotFound
      */
-    public function it_cannot_return_an_unexisting_player()
+    public function it_cannot_return_an_unexisting_player(): void
     {
         $repository = new ArrayPlayerRepository();
 

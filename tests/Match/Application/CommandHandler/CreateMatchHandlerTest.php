@@ -33,7 +33,7 @@ final class CreateMatchHandlerTest extends CommandHandlerScenarioTestCase
     }
 
     /** @test */
-    public function it_creates_a_match_between_players()
+    public function it_creates_a_match_between_players(): void
     {
         $matchId = MatchId::generate();
         $whitePlayerId = PlayerId::fromString('Krawczyk');

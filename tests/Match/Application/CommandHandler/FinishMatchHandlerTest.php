@@ -35,7 +35,7 @@ final class FinishMatchHandlerTest extends CommandHandlerScenarioTestCase
     }
 
     /** @test */
-    public function it_finishes_a_match()
+    public function it_finishes_a_match(): void
     {
         $matchId = MatchId::generate();
         $whitePlayerId = PlayerId::fromString('Krawczyk');
@@ -58,7 +58,7 @@ final class FinishMatchHandlerTest extends CommandHandlerScenarioTestCase
      *
      * @expectedException \Pamil\Chess\Match\Application\Exception\MatchNotFound
      */
-    public function it_cannot_finish_an_unexisting_match()
+    public function it_cannot_finish_an_unexisting_match(): void
     {
         $this->scenario
             ->when(new FinishMatch(MatchId::generate(), MatchResult::draw()))

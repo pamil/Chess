@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 final class ArrayMatchRepositoryTest extends TestCase
 {
     /** @test */
-    public function it_stores_a_match()
+    public function it_stores_a_match(): void
     {
         $repository = new ArrayMatchRepository();
 
@@ -31,7 +31,7 @@ final class ArrayMatchRepositoryTest extends TestCase
      *
      * @expectedException \Pamil\Chess\Match\Application\Exception\MatchNotFound
      */
-    public function it_cannot_return_an_unexisting_match()
+    public function it_cannot_return_an_unexisting_match(): void
     {
         $repository = new ArrayMatchRepository();
 

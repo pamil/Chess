@@ -34,7 +34,7 @@ final class RegisterPlayerHandlerTest extends CommandHandlerScenarioTestCase
     }
 
     /** @test */
-    public function it_registers_a_player()
+    public function it_registers_a_player(): void
     {
         $playerId = PlayerId::fromString('Elon Musk');
 
