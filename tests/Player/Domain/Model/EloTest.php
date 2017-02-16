@@ -60,7 +60,7 @@ final class EloTest extends TestCase
     {
         $this
             ->forAll(Generator\choose(-5000, 5000), Generator\choose(-5000, 5000))
-            ->then(function (int $firstScore, int $secondScore) {
+            ->then(function (int $firstScore, int $secondScore): void {
                 $firstElo = new Elo($firstScore);
                 $secondElo = new Elo($secondScore);
 
@@ -75,7 +75,7 @@ final class EloTest extends TestCase
         $this
             ->limitTo(20)
             ->forAll(Generator\choose(-5000, 5000))
-            ->then(function (int $score) {
+            ->then(function (int $score): void {
                 $elo = new Elo($score);
 
                 Assert::assertSame(0.64, round(Elo::getWinProbability($elo, new Elo($score - 100)), 2));
@@ -89,7 +89,7 @@ final class EloTest extends TestCase
     {
         $this
             ->forAll(Generator\choose(-5000, 5000), Generator\choose(-5000, 5000))
-            ->then(function ($firstScoreBefore, $secondScoreBefore) {
+            ->then(function (int $firstScoreBefore, int $secondScoreBefore): void {
                 $sumOfScoresBefore = $firstScoreBefore + $secondScoreBefore;
 
                 $firstScoreAfter = (new Elo($firstScoreBefore))->afterWinningAgainst(new Elo($secondScoreBefore))->toInt();
@@ -112,7 +112,7 @@ final class EloTest extends TestCase
 
         $this
             ->forAll(Generator\choose(-5000, 5000), Generator\choose(-5000, 5000))
-            ->then(function ($firstScoreBefore, $secondScoreBefore) {
+            ->then(function (int $firstScoreBefore, int $secondScoreBefore): void {
                 $sumOfScoresBefore = $firstScoreBefore + $secondScoreBefore;
 
                 $firstScoreAfter = (new Elo($firstScoreBefore))->afterDrawingAgainst(new Elo($secondScoreBefore))->toInt();
